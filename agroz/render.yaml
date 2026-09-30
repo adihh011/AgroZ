@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: agro-z
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: AGROZ_SECRET_KEY
+        generateValue: true
+      - key: AGROZ_ADMIN_PASSWORD
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: AGMARKNET_ENABLED
+        value: "true"

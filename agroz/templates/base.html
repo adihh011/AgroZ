@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Agro Z{% endblock %}</title><meta name="theme-color" content="#06120e">
+<link rel="preconnect" href="https://cdn.jsdelivr.net"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="bg-orb orb-a"></div><div class="bg-orb orb-b"></div>
+<nav class="navbar navbar-expand-lg navbar-dark ag-nav sticky-top"><div class="container">
+<a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ url_for('index') }}"><span class="brand-mark"><i class="bi bi-flower1"></i></span><span>Agro <span class="brand-z">Z</span></span></a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+{% if session.get('user_id') %}
+<li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-grid-1x2 me-1"></i>Dashboard</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('recommendation') }}"><i class="bi bi-stars me-1"></i>Crop AI</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('fertilizer') }}"><i class="bi bi-droplet me-1"></i>Fertilizer</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('weather') }}"><i class="bi bi-cloud-sun me-1"></i>Weather</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('market') }}"><i class="bi bi-graph-up-arrow me-1"></i>Market</a></li>
+{% if session.get('role') == 'admin' %}<li class="nav-item"><a class="nav-link" href="{{ url_for('admin') }}"><i class="bi bi-shield-lock me-1"></i>Admin</a></li>{% endif %}
+<li class="nav-item ms-lg-2"><a class="nav-link profile-chip" href="{{ url_for('profile') }}"><span class="avatar">{{ session.get('name','F')[:1]|upper }}</span>{{ session.get('name','Farmer') }}</a></li>
+<li class="nav-item ms-lg-1"><a class="btn btn-outline-light btn-sm px-3" href="{{ url_for('logout') }}">Logout</a></li>
+{% else %}
+<li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#features">Features</a></li><li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li><li class="nav-item ms-lg-2"><a class="btn btn-green btn-sm px-3" href="{{ url_for('register') }}">Get Started <i class="bi bi-arrow-up-right"></i></a></li>
+{% endif %}</ul></div></div></nav>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="container toast-stack">{% for category,message in messages %}<div class="alert {{ 'alert-success' if category=='success' else 'alert-danger' }} glass alert-dismissible fade show"><i class="bi {{ 'bi-check-circle' if category=='success' else 'bi-exclamation-triangle' }} me-2"></i>{{ message }}<button class="btn-close btn-close-white" data-bs-dismiss="alert"></button></div>{% endfor %}</div>{% endif %}{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer py-5 mt-5"><div class="container d-flex flex-column flex-md-row justify-content-between gap-3"><div><strong><span class="brand-z">✦</span> Agro Z</strong><div class="muted small mt-1">All-in-one smart agriculture advisory dashboard.</div></div><div class="muted small">Crop • Soil • Weather • Market • {{ app_year }}</div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script><script src="{{ url_for('static', filename='js/app.js') }}"></script>{% block scripts %}{% endblock %}
+</body></html>

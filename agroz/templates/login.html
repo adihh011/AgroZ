@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Login — Agro Z{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card glass">
+ <div class="eyebrow">WELCOME BACK</div><h2>Sign in to Agro Z</h2><p class="muted">Open the connected farm dashboard.</p>
+ <form method="post" class="mt-4">
+  <label>Email</label><input class="form-control" type="email" name="email" required>
+  <label class="mt-3">Password</label><input class="form-control" type="password" name="password" required>
+  <button class="btn btn-green w-100 mt-4">Login <i class="bi bi-arrow-right"></i></button>
+ </form>
+ <p class="small muted mt-4 mb-0">Demo admin: admin@agroz.local / admin123</p>
+</div></div>
+{% endblock %}

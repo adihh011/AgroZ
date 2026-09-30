@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Fertilizer Advisory — Agro Z{% endblock %}
+{% block content %}
+<div class="container py-5">
+ <div class="eyebrow">02 / NUTRIENT INTELLIGENCE</div><h2>Fertilizer recommendations that make sense.</h2>
+ <p class="muted">Agro Z prioritizes nutrient need first, then shows suitable fertilizer names for the selected crop. Final doses must follow soil-test and local crop recommendations.</p>
+ <div class="row g-4 mt-2">
+  <div class="col-lg-8"><div class="panel glass">
+   <h5>How the recommendation works</h5>
+   <div class="flow-list">
+    <div><b>1</b><span>Identify the recommended crop</span></div>
+    <div><b>2</b><span>Compare soil N-P-K with the crop profile</span></div>
+    <div><b>3</b><span>Detect Low / Adequate / High nutrients</span></div>
+    <div><b>4</b><span>Show fertilizer types that address the deficiency</span></div>
+    <div><b>5</b><span>Cross-check with soil test, crop stage and local RDF before application</span></div>
+   </div>
+   <a class="btn btn-green mt-3" href="{{ url_for('recommendation') }}">Run soil analysis</a>
+  </div></div>
+  <div class="col-lg-4"><div class="panel glass warning-panel"><i class="bi bi-shield-check"></i><h5>Safety by design</h5><p class="muted mb-0">The app avoids pretending that one brand or one dose is universally “best”. It connects nutrient deficiency to fertilizer type and keeps final dosing site-specific.</p></div></div>
+ </div>
+ <div class="panel glass mt-4"><div class="panel-title">Crop-specific fertilizer options</div>
+ <div class="table-responsive"><table class="table ag-table"><thead><tr><th>Crop</th><th>Preferred fertilizer options</th></tr></thead><tbody>
+ {% for crop, opts in [('Rice','Urea • DAP • MOP • Compost/FYM'),('Maize','Urea • DAP • MOP • Compost/FYM'),('Banana','MOP • Urea • DAP • Compost/FYM'),('Potato','MOP • DAP • Urea • Compost/FYM'),('Tomato','NPK Complex • Urea • MOP • Compost/FYM'),('Cotton','Urea • DAP • MOP • Compost/FYM'),('Chickpea','SSP • MOP • Compost/FYM'),('Mango','MOP • NPK Complex • Compost/FYM')] %}
+ <tr><td><b>{{ crop }}</b></td><td>{{ opts }}</td></tr>
+ {% endfor %}
+ </tbody></table></div></div>
+</div>
+{% endblock %}

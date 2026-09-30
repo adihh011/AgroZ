@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Register — Agro Z{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card glass">
+ <div class="eyebrow">FARMER ACCOUNT</div><h2>Create an Agro Z account</h2><p class="muted">Save soil inputs and recommendations to the dashboard.</p>
+ <form method="post" class="mt-4">
+  <label>Name</label><input class="form-control" name="name" required>
+  <label class="mt-3">Email</label><input class="form-control" type="email" name="email" required>
+  <label class="mt-3">Farm location</label><input class="form-control" name="location" placeholder="e.g. Thiruvananthapuram, Kerala">
+  <label class="mt-3">Password</label><input class="form-control" type="password" name="password" minlength="6" required>
+  <button class="btn btn-green w-100 mt-4">Create account</button>
+ </form>
+</div></div>
+{% endblock %}

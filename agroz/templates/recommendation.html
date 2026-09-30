@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Crop AI — Agro Z{% endblock %}
+{% block content %}
+<div class="container py-5">
+ <div class="eyebrow">01 / CROP + FERTILIZER ENGINE</div><h2>Analyze farm conditions.</h2><p class="muted">Enter soil and climate values. Agro Z will connect the crop recommendation to the fertilizer advisory.</p>
+ <div class="row g-4 mt-2">
+  <div class="col-lg-7"><div class="panel glass">
+   <form method="post" class="row g-3">
+    <div class="col-md-4"><label>N — Nitrogen</label><input class="form-control" name="n" type="number" step="0.1" value="120" required></div>
+    <div class="col-md-4"><label>P — Phosphorus</label><input class="form-control" name="p" type="number" step="0.1" value="55" required></div>
+    <div class="col-md-4"><label>K — Potassium</label><input class="form-control" name="k" type="number" step="0.1" value="45" required></div>
+    <div class="col-md-4"><label>pH</label><input class="form-control" name="ph" type="number" step="0.1" value="6.5" required></div>
+    <div class="col-md-4"><label>Temperature °C</label><input class="form-control" name="temperature" type="number" step="0.1" value="25" required></div>
+    <div class="col-md-4"><label>Humidity %</label><input class="form-control" name="humidity" type="number" step="0.1" value="65" required></div>
+    <div class="col-md-6"><label>Rainfall mm</label><input class="form-control" name="rainfall" type="number" step="0.1" value="100" required></div>
+    <div class="col-md-6"><label>Farm location</label><input class="form-control" name="location" value="{{ request.form.get('location','') }}" placeholder="e.g. Kerala"></div>
+    <div class="col-12"><button class="btn btn-green px-4">Run Agro Z analysis <i class="bi bi-stars"></i></button></div>
+   </form>
+  </div></div>
+  <div class="col-lg-5">
+   {% if result %}
+   <div class="result-card glass">
+    <div class="eyebrow">RECOMMENDED CROP</div><div class="crop-name">{{ result.crop }}</div>
+    <div class="score-ring">{{ result.confidence }}<small>%</small></div>
+    <p class="muted">Compatibility score. It is not a validated model accuracy percentage.</p>
+    <hr>
+    <b>Next step</b><p class="muted mb-0">Open Fertilizer to inspect nutrient status and crop-specific fertilizer options.</p>
+   </div>
+   {% else %}<div class="empty-card glass"><i class="bi bi-flower1"></i><h4>Your result appears here</h4><p class="muted">Run the analysis using the test values or real soil data.</p></div>{% endif %}
+  </div>
+ </div>
+
+ {% if fert %}
+ <div class="panel glass mt-4">
+  <div class="panel-title"><span>Connected fertilizer advisory — {{ fert.crop }}</span><a href="{{ url_for('fertilizer') }}">Full fertilizer view</a></div>
+  <div class="row g-3 mt-1">
+   {% for key,val in fert.statuses.items() %}<div class="col-4"><div class="nutrient"><small>{{ key }}</small><b>{{ val }}</b></div></div>{% endfor %}
+  </div>
+  <div class="row g-3 mt-3">
+   {% for x in fert.recommendations %}<div class="col-md-6"><div class="advice-item"><b>{{ x.name }}</b><span>{{ x.reason }}</span></div></div>{% endfor %}
+  </div>
+  <p class="small muted mt-3 mb-0">{{ fert.notice }}</p>
+ </div>
+ {% endif %}
+</div>
+{% endblock %}

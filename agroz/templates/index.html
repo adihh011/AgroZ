@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Agro Z — Smarter Farming{% endblock %}
+{% block content %}
+<section class="hero">
+ <div class="container py-5">
+  <div class="row align-items-center g-5">
+   <div class="col-lg-7">
+    <div class="eyebrow">SMART AGRICULTURE • FROM SOIL TO MARKET</div>
+    <h1>Smarter decisions.<br><span>Better harvests.</span></h1>
+    <p class="lead muted mt-4">Agro Z brings crop recommendation, fertilizer intelligence, weather risk alerts and market insights into one farmer-friendly dashboard.</p>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <a class="btn btn-green btn-lg px-4" href="{{ url_for('register') }}">Start Farming Smarter <i class="bi bi-arrow-right"></i></a>
+      <a class="btn btn-ghost btn-lg px-4" href="#features">Explore features</a>
+    </div>
+    <div class="mini-stats mt-5">
+      <div><b>01</b><span>Crop Intelligence</span></div>
+      <div><b>02</b><span>Weather Advisory</span></div>
+      <div><b>03</b><span>Market Intelligence</span></div>
+    </div>
+   </div>
+   <div class="col-lg-5">
+     <div class="dashboard-preview glass">
+       <div class="preview-top"><span>AGRO Z / FARM OVERVIEW</span><span class="live-pill">● READY</span></div>
+       <div class="row g-3 mt-1">
+        <div class="col-6"><div class="preview-card"><small>WEATHER</small><strong>29°C</strong><span>Partly cloudy</span></div></div>
+        <div class="col-6"><div class="preview-card"><small>SOIL HEALTH</small><strong>Good</strong><span>N  P  K balanced</span></div></div>
+        <div class="col-12"><div class="preview-card accent"><small>AI CROP RECOMMENDATION</small><strong>Maize</strong><span>Compatibility score 91%</span></div></div>
+       </div>
+     </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="features" class="section">
+ <div class="container">
+  <div class="section-heading"><div class="eyebrow">CORE INTELLIGENCE</div><h2>Everything connected.</h2><p class="muted">The workflow follows the Agro Z project architecture: farmer input → backend → recommendation + live context → actionable dashboard output.</p></div>
+  <div class="row g-4 mt-2">
+   <div class="col-md-4"><div class="feature-card"><i class="bi bi-cpu"></i><h4>Crop + Fertilizer AI</h4><p>Uses N, P, K, pH and climate inputs to recommend a crop and show crop-specific fertilizer options plus nutrient deficiency signals.</p></div></div>
+   <div class="col-md-4"><div class="feature-card"><i class="bi bi-cloud-sun"></i><h4>Weather Advisory</h4><p>OpenWeatherMap integration supports current conditions, five-day forecasts and heat/rain risk advisories.</p></div></div>
+   <div class="col-md-4"><div class="feature-card"><i class="bi bi-graph-up-arrow"></i><h4>Market Intelligence</h4><p>Market module is structured for AGMARKNET/data.gov.in data, with trend charts and a best-market comparison.</p></div></div>
+  </div>
+ </div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Profile — Agro Z{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="auth-card glass mx-auto">
+ <div class="eyebrow">PROFILE</div><h2>Farm profile</h2>
+ <form id="profileForm" class="mt-4">
+  <label>Name</label><input id="name" class="form-control">
+  <label class="mt-3">Farm location</label><input id="location" class="form-control" placeholder="City, State">
+  <label class="mt-3">Email</label><input id="email" class="form-control" disabled>
+  <button class="btn btn-green mt-4">Save profile</button>
+ </form><div id="profileMsg" class="small muted mt-3"></div>
+</div></div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/profile.js') }}"></script>{% endblock %}
